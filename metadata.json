@@ -1,0 +1,6 @@
+{
+  "name": "Crazy Storyes",
+  "description": "Premium Hindi Audio Novels & Audiobooks Platform featuring 16:9 covers, VIP audio chapters, Telegram integration, manual UPI payments, and Crazy AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

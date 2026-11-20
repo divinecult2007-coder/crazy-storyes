@@ -1,0 +1,962 @@
+# CRAZY STORYES — COMPLETE MASTER PROJECT UPGRADE PROMPT
+
+## ROLE AND RESPONSIBILITY
+
+Act as a Senior Full-Stack Developer, Professional UI/UX Designer, Backend Engineer, Database Architect and Security Engineer.
+
+Your task is to inspect, upgrade, debug and complete my existing Crazy Storyes Novel Reading and Audio Book Website.
+
+I have an existing project. You must work directly on its existing source code.
+
+This is NOT a request to build a new website.
+
+Your responsibility is to understand the complete project, preserve all working features, fix existing bugs and implement all missing features described below.
+
+I want a genuinely functional, stable and professional application, not a demo UI with buttons that do nothing.
+
+# PART 1 — FIRST UNDERSTAND THE COMPLETE PROJECT
+
+Before modifying anything, inspect the entire project.
+
+Understand:
+
+- Frontend architecture.
+- Backend architecture.
+- Project folder structure.
+- Existing Components.
+- Existing CSS and Design System.
+- Database Structure.
+- Authentication System.
+- User Management.
+- Membership and Subscription System.
+- Payment System.
+- Admin Panel.
+- Novel Management.
+- Chapter Management.
+- Audio Player and TTS.
+- Reading History and Progress.
+- Library and Bookmarks.
+- Search System.
+- Rating System.
+- Manhwa Video System.
+- Existing API Routes.
+- Existing Security and Permissions.
+
+Identify which features are complete, incomplete, broken or missing.
+
+Prepare an internal implementation plan and then start making the actual changes.
+
+Do not stop after giving me an analysis or suggestions.
+
+# PART 2 — STRICT EXISTING DESIGN PRESERVATION
+
+My existing website has a distinctive 3D UI design.
+
+Preserve the existing visual identity.
+
+Do not unnecessarily change:
+
+- 3D Design.
+- Colors and Color Combinations.
+- Gradients.
+- Shadows.
+- Animations.
+- Transitions.
+- Novel Cards.
+- Category Layout.
+- Home Page.
+- Explore Page.
+- Header and Footer.
+- Novel Details Page.
+- Reading Page.
+- Existing Navigation.
+- Existing Typography.
+- Existing Spacing.
+- Admin Panel Design.
+- Manhwa Video Section.
+
+Do not replace my website with a generic template.
+
+Do not redesign existing pages unnecessarily.
+
+New features must visually match the existing 3D Design.
+
+### EXISTING FEATURES TO PRESERVE
+
+The project already contains implementations or initial support for:
+
+- Home Page.
+- Explore Page.
+- Novel Categories.
+- Novel Cards.
+- Novel Details.
+- ReaderView.
+- LibraryView.
+- Bookmarks.
+- Login and Signup.
+- Authentication.
+- Premium Membership.
+- Payment System.
+- Admin Panel.
+- Novel and Chapter Management.
+- Reading History.
+- Reading Progress.
+- Ratings.
+- Audio Player.
+- TTS.
+- Reading Themes.
+- Font Size Controls.
+- Manhwa Video Section.
+
+Do not create duplicate implementations of these features.
+
+If a feature works properly, preserve it.
+
+If it is incomplete, finish it.
+
+If it is broken, fix it.
+
+If a feature is missing, implement it.
+
+# PART 3 — COMPLETE AUDIO PLAYER FIX AND IMPROVEMENTS
+
+Inspect the existing Audio Player and fix all playback-related bugs.
+
+### Existing Bugs to Fix
+
+- Audio plays but the Player displays an incorrect Pause or Play icon.
+- Pause does not correctly stop playback.
+- Clicking Play after Pause restarts Audio from the beginning.
+- Playback Position is not saved correctly.
+- Progress Bar does not match the actual Audio Position.
+- Multiple Audio Instances play simultaneously.
+- Chapter changes cause incorrect playback state.
+- Auto Next does not work correctly.
+
+### Required Audio Controls
+
+Implement or fix:
+
+1. Play.
+2. Pause.
+3. Resume from the exact paused position.
+4. Previous Chapter.
+5. Next Chapter.
+6. Progress Bar.
+7. Seek Forward by 10 seconds.
+8. Seek Backward by 10 seconds.
+9. Playback Speed.
+10. Volume Control.
+11. Mute and Unmute.
+12. Sleep Timer.
+13. Auto Next Chapter.
+14. Background Playback.
+15. Lock Screen Controls where supported.
+
+### Playback Speeds
+
+Provide:
+
+- 0.5x
+- 0.75x
+- 1x
+- 1.25x
+- 1.5x
+- 2x
+
+### Technical Requirements
+
+- The actual HTMLAudioElement state must be the source of truth.
+- Properly handle play, pause, ended, waiting, error and timeupdate events.
+- Update UI from actual playback events.
+- Prevent duplicate Audio Instances.
+- Properly clean up event listeners.
+- Save playback position for each User, Novel and Chapter.
+- Restore playback position when returning.
+- Preserve position after Browser Refresh.
+- Chapter changes must reset the old Audio correctly.
+- Do not reset Audio Position when switching between Text and Audio Mode.
+
+### Previous and Next Chapter
+
+Previous and Next Chapter controls must be clearly available in the Audio Player.
+
+Previous Chapter:
+- Start the previous available Chapter.
+- Disable the button if no previous Chapter exists.
+- Restore the previous Chapter's saved Audio Position if available.
+
+Next Chapter:
+- Start the next authorized Chapter.
+- Disable the button if no next Chapter exists.
+- Restore its saved Audio Position if available.
+
+When switching Chapters, the old Audio must stop completely before the new Audio starts.
+
+The current Chapter Title and Chapter Number must be visible.
+
+Audio Navigation must synchronize with Text Reading Navigation.
+
+Do not bypass Free and Premium Chapter Permissions.
+
+### TTS Requirements
+
+If a Chapter uses Text-to-Speech:
+
+- Handle Speech Synthesis separately from normal Audio Files.
+- Do not pretend unsupported TTS seeking is available.
+- Save progress using the best supported method.
+- Display the actual TTS playback state.
+- Do not break normal Audio File Playback.
+
+# PART 4 — AUDIO BOOK DOWNLOAD TO USER'S DEVICE
+
+THIS IS ONE OF THE MOST IMPORTANT REQUIREMENTS.
+
+I want users to download Audio Books directly to their own Mobile or Computer.
+
+I DO NOT want downloaded Audio Files permanently stored inside my website's App Storage.
+
+### Device Download Requirements
+
+Support:
+
+- Android.
+- iPhone and iPad.
+- Windows Computer.
+- Desktop Browsers.
+- Supported Tablets.
+
+Use the Browser's Native Download Mechanism.
+
+Download files to the user's device using the available Browser Download Location.
+
+Do not permanently store downloaded duplicate Audio Files on my Server.
+
+Do not permanently store generated Audio Book ZIP Files.
+
+Use the existing original Audio Files as the source.
+
+Do not regenerate Audio unnecessarily.
+
+### Audio Download Options
+
+1. Download Current Chapter Audio.
+2. Download All Available Chapter Audios.
+3. Download Complete Audio Book.
+
+### Complete Audio Book
+
+When the user chooses Complete Audio Book:
+
+- Collect all authorized Chapter Audio Files.
+- Arrange them in the correct Chapter Order.
+- Use meaningful filenames containing Chapter Numbers and Titles.
+- Create a ZIP Archive if needed.
+- Download that ZIP directly to the user's Device.
+- Delete temporary Server Archives after completion or expiry.
+- Do not permanently store duplicate ZIP Archives.
+
+### Audio Quality
+
+- Preserve Original Audio Quality.
+- Prefer MP3 when the original file is MP3.
+- Preserve the original format when appropriate.
+- Do not unnecessarily convert or compress Audio.
+- Ensure downloaded Audio Files actually play.
+
+### Important Technical Details
+
+- Use efficient streaming for large Files.
+- Support HTTP Range Requests where possible.
+- Support Resumable Downloads where supported.
+- Set correct Content-Type and Content-Disposition Headers.
+- Do not load huge Audio Files entirely into browser memory.
+- Handle Interrupted Downloads safely.
+
+Original Audio Files will remain on the Server as the playback source. Only unnecessary downloaded copies and permanent generated archives must be avoided.
+
+If the project does not currently have original Audio Files for a Chapter, do not generate fake download links. Show a clear unavailable message.
+
+# PART 5 — PDF AND TXT NOVEL DOWNLOAD SYSTEM
+
+Only support:
+
+- PDF.
+- TXT.
+- AUDIO BOOK.
+
+EPUB must NOT be introduced.
+
+### Download Interface
+
+Add a Download Button to the existing Novel Reading Page.
+
+The interface must match my existing 3D UI.
+
+Provide:
+
+- Download Current Chapter.
+- Download All Available Chapters.
+- Download Complete Novel.
+- Download as PDF.
+- Download as TXT.
+- Download Current Chapter Audio.
+- Download All Chapter Audios.
+- Download Complete Audio Book.
+
+Show only the options that the User is authorized to access.
+
+### PDF Requirements
+
+- Proper Novel Title.
+- Chapter Titles.
+- Correct Chapter Order.
+- Readable Typography.
+- Clean Page Layout.
+- No Missing Content.
+
+### TXT Requirements
+
+- Proper Novel Title.
+- Chapter Titles.
+- Correct Chapter Order.
+- Clean Text Formatting.
+- Complete Authorized Content.
+
+PDF and TXT must download directly to the user's Device.
+
+Do not permanently store generated duplicate Files on the Server.
+
+# PART 6 — FREE AND PREMIUM DOWNLOAD PERMISSIONS
+
+### FREE USERS
+
+Free Users can:
+
+- Download Free Chapters as PDF.
+- Download Free Chapters as TXT.
+- Download Free Chapter Audio.
+- Download Free Chapters of a Premium Novel, if those Chapters are publicly available.
+
+Free Users cannot:
+
+- Download Premium Chapters.
+- Download Premium Chapter Audio.
+- Download Complete Premium Novels.
+- Download Complete Premium Audio Books.
+
+Show a clear Premium Access Message when an unauthorized Premium Download is attempted.
+
+### PREMIUM USERS
+
+Users with an active Premium Subscription can:
+
+- Download Free Chapters.
+- Download Premium Chapters.
+- Download Individual Chapters.
+- Download Complete Novels as PDF.
+- Download Complete Novels as TXT.
+- Download Individual Chapter Audio.
+- Download All Authorized Chapter Audios.
+- Download Complete Audio Books.
+
+### Backend Security
+
+Never depend only on hiding Frontend Buttons.
+
+Every Download API must verify:
+
+- Authentication.
+- User Identity.
+- Membership Status.
+- Membership Expiry.
+- Chapter Permissions.
+- Novel Permissions.
+
+Premium Content must never be accessible through unauthorized direct API requests or exposed private File URLs.
+
+# PART 7 — AUTOMATIC CONTINUE READING POPUP
+
+THIS FEATURE MUST BE SEPARATE FROM HISTORY.
+
+Whenever a Logged-in User opens the Website, check whether the User has an unfinished Novel Reading or Audio Book Session.
+
+If an unfinished session exists, show a small and attractive Premium 3D Popup on the Home Page.
+
+The purpose is to allow the User to continue exactly where they left off without searching for the Novel again.
+
+### Popup Content
+
+Show:
+
+- Novel Cover.
+- Novel Title.
+- Last Read Chapter.
+- Chapter Number.
+- Reading Progress Percentage.
+- Last Used Mode.
+- Continue Reading Button.
+- Continue Listening Button when Audio Mode was last used.
+- Close Button.
+
+### Popup Behaviour
+
+- Display the most recently active unfinished Novel.
+- Restore the exact Chapter.
+- Restore the Text Reading Position.
+- Restore the Audio Playback Position.
+- If the User last used Text Mode, provide Continue Reading.
+- If the User last used Audio Mode, provide Continue Listening.
+- Allow the User to close the Popup.
+- Do not show repeated intrusive Popups during the same browsing session.
+- Do not show the Popup if no unfinished session exists.
+- Restore User Progress after Login.
+- Do not display incorrect progress for completed Novels.
+
+### Home Page Continue Section
+
+Also provide a small Continue Reading section on the Home Page.
+
+The Popup and Home Page Continue Section are connected to the same Progress Data.
+
+Do not create duplicate Progress Systems.
+
+Continue Reading is NOT the same as History.
+
+# PART 8 — SEPARATE HISTORY TAB
+
+Create a separate History Tab in the existing Navigation.
+
+This Tab must display only the last 5 Unique Novels opened by the User.
+
+### History Rules
+
+- Maximum 5 Unique Novels.
+- Latest Activity first.
+- No Duplicate Entries.
+- Opening an existing Novel moves it to the top.
+- Opening a sixth new Novel removes the oldest entry.
+- Display Novel Cover.
+- Display Novel Title.
+- Display Last Read Chapter.
+- Display Reading Progress.
+- Display Last Activity.
+- Provide Continue Button.
+- Provide Clear History Option.
+
+### Storage Optimization
+
+Store only necessary Metadata:
+
+- User ID.
+- Novel ID.
+- Last Chapter ID.
+- Reading Progress.
+- Last Reading Mode.
+- Last Activity Timestamp.
+
+Do not duplicate entire Chapter Text, Audio Files or other large Content in History.
+
+Use the existing Database architecture.
+
+Continue Reading and History must remain separate Features.
+
+Continue Reading shows the latest unfinished Session.
+
+History shows the last 5 Unique Novels.
+
+# PART 9 — MY LIBRARY AND BOOKMARKS
+
+Improve the existing LibraryView and Bookmark System.
+
+Requirements:
+
+- Add to Library.
+- Remove from Library.
+- My Library Page.
+- Display Saved Novels.
+- Display Novel Cover and Title.
+- Display Reading Progress.
+- Continue Reading Button.
+- Prevent Duplicate Bookmarks.
+- Store User-Specific Library Data in the Backend.
+
+Preserve existing Library Design.
+
+Do not create a duplicate Library System.
+
+# PART 10 — READING EXPERIENCE
+
+Improve the existing ReaderView.
+
+Preserve all existing working Reading Controls.
+
+Required Features:
+
+- Font Size Control.
+- Line Spacing Control.
+- Dark Mode.
+- Light Mode.
+- Existing Midnight Theme.
+- Existing Sepia Theme.
+- Full Screen Reading.
+- Previous Chapter.
+- Next Chapter.
+- Chapter List.
+- Reading Progress.
+- Text and Audio Switching.
+
+Save Reading Preferences where appropriate.
+
+Restore the User's Reading Position after Refresh or Login.
+
+Text and Audio Navigation must remain synchronized.
+
+# PART 11 — SEARCH SYSTEM
+
+Improve the existing Header and Explore Search.
+
+Support:
+
+- Novel Title Search.
+- Hindi Title Search.
+- English Title Search.
+- Category Search.
+- Genre Search.
+- Tag Search.
+- Search Suggestions.
+- Fast Search Results.
+- No Results Message.
+- Mobile Search.
+
+Preserve all existing Categories and Navigation.
+
+# PART 12 — NOVEL RATING AND REVIEWS
+
+Inspect the existing Rating System and improve it.
+
+Requirements:
+
+- 1 to 5 Star Ratings.
+- One Active Rating per User per Novel.
+- Allow Users to Update Ratings.
+- Display Average Rating.
+- Display Total Ratings.
+- Review Submission.
+- Review Display.
+- Backend Validation.
+- Prevent Duplicate Ratings.
+
+Calculate Average Ratings correctly.
+
+# PART 13 — PREMIUM 3D CLICK SOUND AND HAPTIC FEEDBACK
+
+Add a subtle Premium Physical Button Experience to important Interactive Elements.
+
+The goal is to make the existing 3D UI feel more realistic and polished.
+
+### Click Sound
+
+When the User clicks an important Button, play a very subtle Click Sound.
+
+Sound Characteristics:
+
+- Soft.
+- Deep.
+- Smooth.
+- Slightly Heavy Tone.
+- Premium Mechanical Feel.
+- Short Duration.
+- Not Sharp.
+- Not Loud.
+- Not Annoying.
+
+The sound should resemble a high-quality physical 3D Button being pressed.
+
+### 3D Button Animation
+
+On Button Press:
+
+- Slight Press Down Effect.
+- Subtle Depth Change.
+- Smooth Shadow Movement.
+- Natural Release Animation.
+- Smooth Spring Transition.
+
+Keep the existing 3D Design.
+
+Do not overdo the animations.
+
+### Haptic Feedback
+
+On supported Mobile Devices:
+
+- Provide a very light and short Haptic Feedback.
+- Avoid strong vibration.
+- Avoid repeated vibration.
+- Handle unsupported devices gracefully.
+
+### Settings
+
+Add these Settings:
+
+- Interface Sound On/Off.
+- Haptic Feedback On/Off.
+- Click Sound Volume.
+
+Default Click Sound Volume must be very low.
+
+Users must be able to disable Sound and Haptics.
+
+### Important
+
+- Do not play Sound automatically on Page Load.
+- Respect Browser Audio Policies.
+- Do not play Click Sounds during Scrolling.
+- Do not trigger Sounds for every Animation Frame.
+- Use Sound only for meaningful User Interactions.
+- Audio Book Volume and Interface Click Sound Volume must be controlled separately.
+- Respect Reduced Motion Preferences.
+
+# PART 14 — PAYMENT SCREENSHOT UPLOAD AND ADMIN VERIFICATION
+
+My existing Payment System already asks the User for their Name during Premium Membership Purchase.
+
+Keep the existing Payment Flow and add Payment Screenshot Upload to it.
+
+Do not introduce a UTR Number Field.
+
+Do not make UTR or Transaction ID mandatory.
+
+I want the User to provide only their Name and Payment Screenshot through the existing Payment Submission Form.
+
+### User Payment Form
+
+Fields:
+
+1. Name.
+2. Payment Screenshot Upload.
+3. Submit Payment Request.
+
+The existing Membership Plan and Payment Amount must remain visible.
+
+### Supported Screenshot Formats
+
+- JPG.
+- JPEG.
+- PNG.
+- WEBP.
+
+Validate:
+
+- File Type.
+- File Size.
+- Actual File Content.
+
+Set a reasonable File Size Limit.
+
+Provide a Screenshot Preview before Submission.
+
+Allow the User to replace the Screenshot before submitting.
+
+### Admin Payment Verification
+
+Improve the existing Admin Panel.
+
+Admin must be able to see:
+
+- User Name.
+- User Account.
+- Membership Plan.
+- Payment Amount.
+- Uploaded Payment Screenshot.
+- Submission Date.
+- Payment Status.
+
+Admin Actions:
+
+1. Approve Payment.
+2. Reject Payment.
+3. Request Additional Information.
+
+Admin must be able to open the uploaded Screenshot in a clear view.
+
+### Payment Security
+
+- Screenshot Upload must not automatically activate Premium Membership.
+- Admin must verify the actual payment through available Bank or Payment Provider Transaction Records.
+- Only after successful verification should Membership be activated.
+- Prevent duplicate payment approvals.
+- Display Pending, Approved and Rejected Status.
+- Allow Admin to provide a Rejection Reason.
+- Allow User to check Payment Request Status.
+
+### Privacy and Security
+
+- Do not store Screenshots in Public Folders.
+- Only Authorized Admins can access Payment Screenshots.
+- Validate uploaded File Content.
+- Reject executable and invalid Files.
+- Protect Screenshot Access with Backend Authorization.
+- Use reasonable File Retention and Deletion Policies.
+
+Show a warning that Users should never upload OTPs, Passwords, CVV or complete Card Details.
+
+Do not make UTR Number mandatory.
+
+# PART 15 — MOBILE AND TABLET RESPONSIVENESS
+
+Maintain the original 3D Design across:
+
+- Mobile.
+- Tablet.
+- Desktop.
+
+Optimize:
+
+- Home Page.
+- Continue Reading Popup.
+- History Tab.
+- Novel Cards.
+- Reading Page.
+- Audio Player.
+- Download Interface.
+- Library.
+- Search.
+- Navigation.
+- Payment Form.
+- Admin Verification.
+
+Fix:
+
+- Horizontal Overflow.
+- Broken Layouts.
+- Small Touch Targets.
+- Text Overflow.
+- Incorrect Button Sizes.
+- Mobile Audio Controls.
+- Popup Positioning.
+
+Do not remove 3D Effects to simplify the Mobile Layout.
+
+# PART 16 — PERFORMANCE AND SECURITY
+
+Improve performance without damaging the existing architecture.
+
+### Performance
+
+- Optimize Images.
+- Lazy Load Images.
+- Reduce Unnecessary API Calls.
+- Prevent Unnecessary Component Re-renders.
+- Clean up Audio Resources.
+- Prevent Memory Leaks.
+- Optimize Large Chapter Content.
+- Efficiently Handle Large Downloads.
+- Use Appropriate Caching.
+- Avoid Duplicate Requests.
+- Use Efficient Progress Updates.
+
+### Security
+
+- Server-Side Authentication.
+- Server-Side Subscription Verification.
+- Secure Premium Chapter Access.
+- Secure Audio Downloads.
+- Secure Payment Screenshot Storage.
+- Input Validation.
+- Authorization Checks.
+- Proper Error Handling.
+- User-Specific Data Protection.
+- Protection Against Unauthorized API Access.
+
+# PART 17 — EXISTING ADMIN PANEL AND MANHWA VIDEO SYSTEM
+
+Preserve the existing Admin Panel.
+
+Preserve:
+
+- Novel Management.
+- Chapter Management.
+- Audio Management.
+- Premium Chapter Settings.
+- Membership Management.
+- Payment Records.
+- Admin Permissions.
+
+Do not break or unnecessarily modify the existing Manhwa Video Section and its Player.
+
+Novel Reading and Manhwa Video Features must continue working independently.
+
+# PART 18 — DATABASE PROTECTION AND MIGRATIONS
+
+Inspect the existing Database before modifying anything.
+
+The project may use data/db.json or another File-Based Database.
+
+Do not assume a new Database is required.
+
+### Requirements
+
+- Backup existing Database before changes.
+- Preserve all existing User Records.
+- Preserve all Novel Records.
+- Preserve all Chapter Records.
+- Preserve Membership Data.
+- Preserve Payment Records.
+- Preserve Existing Reading Progress.
+- Avoid Unnecessary Data Duplication.
+- Prevent Conflicting Concurrent Updates.
+- Use Backward-Compatible Migrations.
+
+Do not reset, overwrite or delete existing Data without authorization.
+
+Keep History Limited to 5 Unique Novels per User.
+
+Avoid storing large Audio Files or duplicate Chapter Content inside History or Reading Progress Records.
+
+# PART 19 — COMPLETE TESTING
+
+After implementation, run the actual Build, Tests and available Application Checks.
+
+Do not simply claim that everything works.
+
+### AUDIO TESTING
+
+1. Play.
+2. Pause.
+3. Resume.
+4. Position Restore.
+5. Playback Speed.
+6. Seek Forward and Backward.
+7. Volume.
+8. Sleep Timer.
+9. Previous Chapter.
+10. Next Chapter.
+11. Auto Next.
+12. Background Playback where supported.
+13. Text and Audio Synchronization.
+
+### DOWNLOAD TESTING
+
+14. Free PDF Download.
+15. Free TXT Download.
+16. Free Audio Download.
+17. Premium Chapter Protection.
+18. Premium PDF Download.
+19. Premium TXT Download.
+20. Premium Audio Download.
+21. Complete Novel PDF.
+22. Complete Novel TXT.
+23. Complete Audio Book ZIP.
+24. Download to Android Device.
+25. Download to Desktop Device.
+26. Verify File Quality.
+27. Verify Temporary File Cleanup.
+28. Verify No Unnecessary Permanent Download Copies.
+
+### CONTINUE READING AND HISTORY TESTING
+
+29. Continue Reading Popup on Website Open.
+30. Correct Novel and Chapter Restore.
+31. Text Position Restore.
+32. Audio Position Restore.
+33. Popup Close Behaviour.
+34. No Popup When No Unfinished Session Exists.
+35. Separate History Tab.
+36. Maximum 5 Unique Novels.
+37. Duplicate Prevention.
+38. Oldest History Entry Removal.
+39. Clear History.
+
+### OTHER FEATURE TESTING
+
+40. My Library.
+41. Add and Remove Bookmarks.
+42. Search.
+43. Ratings.
+44. Reviews.
+45. Click Sound.
+46. Haptic Feedback.
+47. Sound Settings.
+48. Reduced Motion.
+49. Payment Screenshot Upload.
+50. Admin Screenshot Verification.
+51. Payment Approval.
+52. Payment Rejection.
+53. Membership Activation.
+54. Authentication.
+55. Existing Payment System.
+56. Admin Panel.
+57. Manhwa Video System.
+58. Mobile Responsive Design.
+
+Fix all discovered bugs and repeat the relevant tests.
+
+If an actual Mobile Device or Browser Feature cannot be tested in the current environment, clearly identify it as unverified rather than claiming success.
+
+# PART 20 — FINAL PROJECT REPORT
+
+When all work is complete, provide:
+
+1. Complete Project Inspection Summary.
+2. List of Modified Files.
+3. List of New Files.
+4. Existing Bugs Fixed.
+5. New Features Implemented.
+6. Backend Changes.
+7. Database Changes.
+8. Security Improvements.
+9. Build Results.
+10. Test Results.
+11. Remaining Issues.
+12. Browser-Dependent Features.
+13. Any Required Manual Configuration.
+
+Do not hide incomplete work.
+
+Do not claim a feature is complete unless it has actually been implemented.
+
+# FINAL NON-NEGOTIABLE INSTRUCTIONS
+
+- Do not rebuild my website from scratch.
+- Do not remove existing working Features.
+- Do not change the existing 3D Design.
+- Do not introduce EPUB.
+- Do not create duplicate Systems.
+- Do not break Authentication.
+- Do not break Payments.
+- Do not break Admin Panel.
+- Do not break Manhwa Video Features.
+- Do not permanently store downloaded Audio Copies in App Storage.
+- Downloaded Audio Books must go to the User's Device.
+- Original Audio Source Files must remain available on the Server.
+- Continue Reading must appear as a Popup when the User opens the Website, if an unfinished Session exists.
+- History must be a separate Tab containing only the last 5 Unique Novels.
+- Audio Player must have Previous and Next Chapter Controls.
+- Click Sound must be very soft and Premium.
+- Haptic Feedback must be subtle.
+- Users must be able to disable Sound and Haptics.
+- Payment Screenshot Upload must not require UTR Number.
+- Payment Approval must require actual Transaction Verification.
+- Preserve all existing Data.
+- Perform real Implementation and Testing.
+
+## FINAL OBJECTIVE
+
+Make Crazy Storyes a polished, professional, stable Novel Reading and Audio Book Platform.
+
+Preserve everything that already works.
+
+Fix everything that is broken.
+
+Complete everything that is incomplete.
+
+Add everything that is missing.
+
+Improve the existing 3D User Experience.
+
+Do not sacrifice existing functionality for new features.
+
+**UNDERSTAND THE PROJECT FIRST. MODIFY THE EXISTING PROJECT CAREFULLY. TEST EVERYTHING BEFORE DECLARING THE WORK COMPLETE.**
