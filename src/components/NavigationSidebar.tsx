@@ -8,6 +8,7 @@ import {
   Library,
   History,
   HelpCircle,
+  Download,
   Shield,
   BookOpen,
   Layers,
@@ -27,6 +28,9 @@ interface NavigationSidebarProps {
   currentView: string;
   onNavigate: (view: string, params?: any) => void;
 }
+
+const APK_DOWNLOAD_URL =
+  'https://github.com/divinecult2007-coder/crazy-storyes/releases/download/v1.0.0/app-debug.apk';
 
 export const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   isOpen,
@@ -197,6 +201,22 @@ export const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
                 </button>
               );
             })}
+
+            {/* Download App Button */}
+            <a
+              href={APK_DOWNLOAD_URL}
+              download="CrazyStoryes.apk"
+              onClick={onClose}
+              className="w-full px-3 py-2.5 rounded-xl text-xs font-bold text-left transition flex items-center justify-between group text-emerald-300 hover:text-emerald-200 bg-emerald-950/30 hover:bg-emerald-900/40 border border-emerald-500/30 mt-1"
+            >
+              <div className="flex items-center gap-2.5">
+                <Download className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition" />
+                <span>ऐप डाउनलोड करें (Download APK)</span>
+              </div>
+              <span className="px-1.5 py-0.5 rounded-full text-[9px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                APK
+              </span>
+            </a>
 
             {/* ADMIN SECTION — STRICTLY RESTRICTED TO user.role === 'admin' */}
             {isAdmin && user?.role === 'admin' && (
