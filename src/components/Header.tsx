@@ -129,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#090314]/95 border-b border-purple-500/20">
+    <header className="sticky top-0 z-40 w-full bg-[#090314] border-b border-purple-500/20">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* Main Header Bar */}
         <div className="flex items-center justify-between h-14 sm:h-16 gap-2 sm:gap-4">
@@ -301,7 +301,7 @@ export const Header: React.FC<HeaderProps> = ({
                   {/* Dropdown Menu */}
                   {userMenuOpen && (
                     <div 
-                      className="absolute right-0 mt-2 w-56 rounded-2xl bg-[#120726] border border-purple-500/30 shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150"
+                      className="absolute right-0 mt-2 w-56 rounded-2xl bg-[#120726] border border-purple-500/30 shadow-2xl p-2 z-50"
                       onMouseLeave={() => setUserMenuOpen(false)}
                     >
                       <div className="px-3 py-2 border-b border-purple-900/40">
