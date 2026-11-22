@@ -734,7 +734,6 @@ class Database {
           );
           const { last_login_at, last_logout_at, telegram, ...safeUpdates } = rowUpdates;
           if (Object.keys(safeUpdates).length === 0) {
-            // Only optional tracking timestamps/telegram were being updated; keep cache in sync without failing login/logout
             if (idx !== -1) {
               this.cache.users[idx] = { ...this.cache.users[idx], ...updates };
               return this.cache.users[idx];
@@ -1518,20 +1517,58 @@ class Database {
 
       const baseSettings = existingRow ? rowToSettings(existingRow) : this.cache.settings;
       const mergedSettings: SiteSettings = { ...baseSettings, ...updates };
-      const upsertRow = settingsToRow(mergedSettings);
+      const retryRow: Record<string, any> = { ...settingsToRow(mergedSettings) };
 
-      const { data, error } = await supabase
-        .from('site_settings')
-        .upsert(upsertRow, { onConflict: 'id' })
-        .select()
-        .maybeSingle();
+      const optionalSettingsCols = [
+        'upi_qr_code_url',
+        'announcement',
+        'announcement_active',
+        'support_email',
+        'support_phone',
+        'enable_ai_assistant',
+        'tagline',
+        'admin_email',
+        'updated_at'
+      ];
 
-      if (error) {
+      for (let attempt = 0; attempt <= optionalSettingsCols.length; attempt++) {
+        const { data, error } = await supabase
+          .from('site_settings')
+          .upsert(retryRow, { onConflict: 'id' })
+          .select()
+          .maybeSingle();
+
+        if (!error) {
+          if (data) {
+            this.cache.settings = rowToSettings(data);
+            return this.cache.settings;
+          }
+          this.cache.settings = mergedSettings;
+          return this.cache.settings;
+        }
+
         if (isTableMissingError(error)) {
           this.warnMissingTable('site_settings', 'updateSettings');
           this.cache.settings = mergedSettings;
           return this.cache.settings;
         }
+
+        const msg = String(error?.message || '');
+        const code = String(error?.code || '');
+        const missingCol =
+          code === 'PGRST204' ||
+          code === '42703' ||
+          /could not find the '[^']+' column/i.test(msg) ||
+          /column [^ ]+ does not exist/i.test(msg)
+            ? optionalSettingsCols.find(col => msg.includes(col)) || null
+            : null;
+
+        if (missingCol && Object.prototype.hasOwnProperty.call(retryRow, missingCol)) {
+          console.warn(`⚠️ site_settings missing column "${missingCol}", retrying without it.`);
+          delete retryRow[missingCol];
+          continue;
+        }
+
         console.error('Supabase updateSettings error:', {
           code: error.code,
           message: error.message,
@@ -1539,11 +1576,8 @@ class Database {
         });
         throw createDatabaseError('updateSettings', error);
       }
-      if (data) {
-        this.cache.settings = rowToSettings(data);
-        return this.cache.settings;
-      }
     }
+
     this.cache.settings = { ...this.cache.settings, ...updates };
     return this.cache.settings;
   }
@@ -1766,8 +1800,6 @@ class Database {
       linkedAt: nowIso
     };
 
-    // Enforce strict 1-to-1 Telegram ID <-> App User mapping
-    // Detach this telegramUserId from any previously linked user record so two accounts never share one TG ID
     const conflictingUsers = this.cache.users.filter(
       u => u.id !== userId && u.telegram?.telegramUserId === tgId
     );
@@ -1776,7 +1808,6 @@ class Database {
     }
 
     if (isSupabaseConfigured() && supabase) {
-      // Also find any Supabase users holding the same telegramUserId in case cache was stale
       try {
         const { data: conflictRows } = await supabase
           .from('telegram_users')
@@ -1793,7 +1824,6 @@ class Database {
         // Non-blocking cleanup check
       }
 
-      // Remove prior rows for either this user_id or this telegram_user_id to avoid unique constraint errors
       await supabase.from('telegram_users').delete().eq('user_id', userId);
       await supabase.from('telegram_users').delete().eq('telegram_user_id', tgId);
 
@@ -1814,7 +1844,6 @@ class Database {
       }
     }
 
-    // Update in user record (which also enforces Supabase persistence)
     const updatedUser = await this.updateUser(userId, { telegram: telegramPayload });
 
     await this.addTelegramLog({
@@ -2228,7 +2257,6 @@ class Database {
           return true;
         }
       } catch (err) {
-        // Table may not exist yet if user hasn't run migration; in-memory set handles deduplication
         console.warn('Supabase isTelegramUpdateProcessed check notice:', err);
       }
     }
@@ -2251,7 +2279,6 @@ class Database {
           .from('telegram_processed_updates')
           .insert({ update_id: updateId });
       } catch (err: any) {
-        // Ignore duplicate key errors (code 23505)
         if (err?.code !== '23505') {
           console.warn('Supabase markTelegramUpdateProcessed notice:', err);
         }
@@ -2286,7 +2313,6 @@ class Database {
     };
 
     this.cache.userAuthLogs.unshift(log);
-    // Keep in-memory cache bounded
     if (this.cache.userAuthLogs.length > 5000) {
       this.cache.userAuthLogs.pop();
     }
@@ -2370,7 +2396,6 @@ class Database {
 
     const inMemory = this.cache.revokedTokens.find(r => r.token === token);
     if (inMemory) {
-      // Check if expired
       if (new Date(inMemory.expiresAt).getTime() < Date.now()) {
         this.cache.revokedTokens = this.cache.revokedTokens.filter(r => r.token !== token);
         return false;
@@ -2407,4 +2432,3 @@ class Database {
 }
 
 export const db = new Database();
-
