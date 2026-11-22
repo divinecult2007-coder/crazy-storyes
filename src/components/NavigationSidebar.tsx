@@ -30,7 +30,7 @@ interface NavigationSidebarProps {
 }
 
 const APK_DOWNLOAD_URL =
-  'https://github.com/divinecult2007-coder/crazy-storyes/releases/download/v1.0.0/app-debug.apk';
+  'https://github.com/divinecult2007-coder/crazy-storyes/releases/download/v1.0.2/app-debug.apk';
 
 export const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
   isOpen,
@@ -73,12 +73,12 @@ export const NavigationSidebar: React.FC<NavigationSidebarProps> = ({
     <div className="fixed inset-0 z-[9999] flex" aria-modal="true" role="dialog">
       {/* Backdrop overlay - click to close */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
+        className="fixed inset-0 bg-black/60"
         onClick={onClose}
       />
 
       {/* Drawer Container (Sliding from Left) */}
-      <aside className="relative z-10 w-80 max-w-[85vw] h-[100dvh] bg-[#0d041c] border-r border-purple-500/30 shadow-2xl flex flex-col justify-between overflow-y-auto animate-in slide-in-from-left duration-200">
+      <aside className="relative z-10 w-80 max-w-[85vw] h-[100dvh] bg-[#0d041c] border-r border-purple-500/30 shadow-2xl flex flex-col justify-between overflow-y-auto">
         
         {/* Top Header & Branding */}
         <div>
