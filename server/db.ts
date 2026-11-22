@@ -1519,7 +1519,8 @@ class Database {
       const mergedSettings: SiteSettings = { ...baseSettings, ...updates };
       const retryRow: Record<string, any> = { ...settingsToRow(mergedSettings) };
 
-      const optionalSettingsCols = [
+      const optionalSettingsCols = ['website_name',
+     'upi_id',
         'upi_qr_code_url',
         'announcement',
         'announcement_active',
